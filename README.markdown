@@ -17,7 +17,88 @@ Errors are in format:
 
 ### Messages API
 
-[GET] /api/1/messages - Reading list of Messages
+#### [GET] /api/1/messages - Reading list of Messages
+
+    * /flowid/FLOW_ID
+          o ID of flow, you can get this from flows ( default is 1 - Live flow )
+          o this can also be group_id or user_id if you are fetching messages for groups or users
+
+    * /flowtype/FLOW_TYPE
+          o flow (default)
+          o group
+          o people
+
+    * /time/TIME - UTC timestamp
+
+RESPONSE:
+    [
+       {
+          "id":964,
+          "user_id":20,
+          "file_id":457,
+          "user_name":"Vlada The Second 22",
+          "user_link_url":"20-vlada-the-second-22",
+          "link_url":"964-text-tag1-tag2-tag3-tag4",
+          "comments_count":1,
+          "likes_count":5,
+          "likers":[
+             {
+                "id":"3",
+                "fullname":"Vlada Petrovi\u0107",
+                "link_url":"3-vlada-petrovi",
+                "file_id":"2"
+             },
+             {
+                "id":"4",
+                "fullname":"Davorin Gabrovec",
+                "link_url":"4-davorin-gabrovec",
+                "file_id":"445"
+             },
+             {
+                "id":"10",
+                "fullname":"Matja\u017e van der Lipu\u0161",
+                "link_url":"10-matja-van-der-lipu",
+                "file_id":null
+             }
+          ],
+          "you_likes":true,
+          "you_bookmarked":true,
+          "message":"text #tag1 #tag2 #tag3 #tag4 #tag5 #tag6 text",
+          "tags":[
+
+          ],
+          "can_edit":true,
+          "can_delete":true,
+          "date":"2009-12-16 20:28:05",
+          "comments":[
+             {
+                "id":974,
+                "user_id":20,
+                "file_id":457,
+                "user_name":"Vlada The Second 22",
+                "user_link_url":"20-vlada-the-second-22",
+                "link_url":"974-spuki-ha",
+                "comments_count":0,
+                "likes_count":0,
+                "you_likes":false,
+                "you_bookmarked":false,
+                "message":"spuki ha ? :)",
+                "tags":[
+
+                ],
+                "type":"1",
+                "can_edit":true,
+                "date":"2009-12-16 22:12:10"
+             }
+          ],
+          "type":"1",
+          "source_id":1
+       }
+    ]
+
+
+#### [GET] /api/1/messagescount - count new messages
+if you don't specify TIME you will get count of all messages from flow
 
     * /flowid/FLOW_ID
           o ID of flow, you can get this from flows ( default is 1 - Live flow )
@@ -32,93 +113,11 @@ Errors are in format:
 
 
 RESPONSE:
-[
-   {
-      "id":964,
-      "user_id":20,
-      "file_id":457,
-      "user_name":"Vlada The Second 22",
-      "user_link_url":"20-vlada-the-second-22",
-      "link_url":"964-text-tag1-tag2-tag3-tag4",
-      "comments_count":1,
-      "likes_count":5,
-      "likers":[
-         {
-            "id":"3",
-            "fullname":"Vlada Petrovi\u0107",
-            "link_url":"3-vlada-petrovi",
-            "file_id":"2"
-         },
-         {
-            "id":"4",
-            "fullname":"Davorin Gabrovec",
-            "link_url":"4-davorin-gabrovec",
-            "file_id":"445"
-         },
-         {
-            "id":"10",
-            "fullname":"Matja\u017e van der Lipu\u0161",
-            "link_url":"10-matja-van-der-lipu",
-            "file_id":null
-         }
-      ],
-      "you_likes":true,
-      "you_bookmarked":true,
-      "message":"text #tag1 #tag2 #tag3 #tag4 #tag5 #tag6 text",
-      "tags":[
-
-      ],
-      "can_edit":true,
-      "can_delete":true,
-      "date":"2009-12-16 20:28:05",
-      "comments":[
-         {
-            "id":974,
-            "user_id":20,
-            "file_id":457,
-            "user_name":"Vlada The Second 22",
-            "user_link_url":"20-vlada-the-second-22",
-            "link_url":"974-spuki-ha",
-            "comments_count":0,
-            "likes_count":0,
-            "you_likes":false,
-            "you_bookmarked":false,
-            "message":"spuki ha ? :)",
-            "tags":[
-
-            ],
-            "type":"1",
-            "can_edit":true,
-            "date":"2009-12-16 22:12:10"
-         }
-      ],
-      "type":"1",
-      "source_id":1
-   }
-]
-
-
-[GET] /api/1/messagescount - count new messages
-        if you don't specify TIME you will get count of all messages from flow
-
-    * /flowid/FLOW_ID
-          o ID of flow, you can get this from flows ( default is 1 - Live flow )
-          o this can also be group_id or user_id if you are fetching messages for groups or users
-
-    * /flowtype/FLOW_TYPE
-          o flow (default)
-          o group
-          o people
-
-    * /time/TIME - UTC timestamp
-
-
-RESPONSE:
-{
-   "flow_id":"17",
-   "flow_type":"group",
-   "count":0
-}
+    {
+       "flow_id":"17",
+       "flow_type":"group",
+       "count":0
+    }
 
 
 [GET] /api/1/message/id/MESSAGE_ID - Read a single Message
